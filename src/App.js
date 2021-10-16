@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import ListsCategory from "./components/ListsCategory";
+import ListsItem from "./components/ListsItem";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="header">
+        <img
+          src="/images/moon-surface-3-land.jpg"
+          alt="bg cover"
+          className="header__img"
+        />
+      </div>
+      <div className="container">
+        <div className="content">
+          <div className="title">
+            <span>RabbitX TODOS</span>
+          </div>
+          <ListsCategory />
+          <ListsItem />
+        </div>
+      </div>
     </div>
   );
 }
