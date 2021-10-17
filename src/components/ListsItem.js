@@ -44,15 +44,17 @@ const ListsItem = observer(() => {
     .filter((todo) => todo.list === todoCtx.currentWatch)
     .map((todo) => {
       let checkStyle = "item__check";
+      let textStyle = "item__text";
       if (todo.completed) {
         checkStyle = "item__check item__check--actived";
+        textStyle = "item__text item__text--actived";
       }
       return (
         <li className="item" key={todo.id}>
           <div className={checkStyle} onClick={() => onToggle(todo.id)}>
             <FiCheck />
           </div>
-          <span className="item__text">{todo.task}</span>
+          <span className={textStyle}>{todo.task}</span>
           <span className="item__remove" onClick={() => onRemove(todo.id)}>
             <FiX />
           </span>

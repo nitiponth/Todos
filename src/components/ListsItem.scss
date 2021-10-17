@@ -198,6 +198,9 @@
 
       &__text {
         transition: color 0.3s ease;
+        &--actived {
+          text-decoration: line-through;
+        }
       }
 
       &__remove {
