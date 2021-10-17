@@ -36,6 +36,14 @@
       cursor: pointer;
       color: #50ff60;
     }
+
+    &--placeholder {
+      color: rgb(187, 187, 187);
+      &:hover {
+        cursor: default;
+        color: rgb(187, 187, 187);
+      }
+    }
   }
 
   &__add {
@@ -69,16 +77,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        // width: 7rem;
-        // height: 5rem;
+
         background-color: transparent;
         &__btn {
           display: flex;
           justify-content: center;
           align-items: center;
           font-size: 2rem;
-          // width: 3.5rem;
-          // height: 3.5rem;
           color: whitesmoke;
 
           transition: all 0.2s;

@@ -19,11 +19,17 @@ const ListsCategory = observer(() => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onAddList();
+    }
+  };
+
   const onListClicked = (id) => {
     todoCtx.setCurrentWatch(id);
   };
 
-  const categoryLists = lists.map((list) => (
+  let categoryLists = lists.map((list) => (
     <li
       className="category__item"
       key={list.id}
@@ -32,6 +38,14 @@ const ListsCategory = observer(() => {
       {list.name}
     </li>
   ));
+
+  if (categoryLists.length === 0) {
+    categoryLists = (
+      <li className="category__item category__item--placeholder">
+        No lists yet
+      </li>
+    );
+  }
 
   return (
     <div className="category">
@@ -43,6 +57,7 @@ const ListsCategory = observer(() => {
             className="add__input"
             placeholder="New category"
             ref={inputListRef}
+            onKeyDown={handleKeyDown}
           />
           <span className="add__check">
             <div className="add__check__btn" onClick={onAddList}>

@@ -1,0 +1,46 @@
+.Modal {
+  border-radius: 2rem;
+  width: 50rem;
+  min-height: 35rem;
+
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  padding: 4rem 3rem 1rem 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: whitesmoke;
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #50ff60;
+    margin-bottom: 4rem;
+  }
+
+  &__answer {
+    color: whitesmoke;
+
+    &--message {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+    }
+    &--result {
+      font-size: 3rem;
+      color: #7cff87;
+    }
+  }
+
+  &__desc {
+    margin-top: auto;
+    color: rgb(136, 136, 136);
+  }
+}

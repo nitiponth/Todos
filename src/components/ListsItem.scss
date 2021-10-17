@@ -1,6 +1,6 @@
 .items {
   width: 60rem;
-  min-height: 10rem;
+  max-height: 90rem;
 
   background: rgba(129, 129, 129, 0.7);
   backdrop-filter: blur(2px);
@@ -10,7 +10,13 @@
   border-radius: 2rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
 
-  overflow: hidden;
+  // -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  // scrollbar-width: none; /* for Firefox */
+  // overflow-y: scroll;
+
+  // &::-webkit-scrollbar {
+  //   display: none; /* for Chrome, Safari, and Opera */
+  // }
 
   color: white;
 
@@ -98,11 +104,20 @@
   }
 
   &__lists {
+    max-height: 60rem;
+
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none; /* for Chrome, Safari, and Opera */
+    }
+
     margin: 0 2rem;
     border-radius: 2rem;
     list-style: none;
     background-color: rgb(60, 60, 60);
-    overflow: hidden;
 
     .item {
       display: flex;
@@ -185,7 +200,9 @@
         color: rgb(253, 56, 34);
       }
       &--green {
-        color: #50ff60;
+        &:hover {
+          color: #50ff60;
+        }
       }
     }
   }

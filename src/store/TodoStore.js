@@ -1,4 +1,4 @@
-import { observable, computed, makeAutoObservable, action } from "mobx";
+import { observable, computed, makeAutoObservable, action, toJS } from "mobx";
 import { v4 as uuidv4 } from "uuid";
 
 // todos {
@@ -17,6 +17,7 @@ class TodoStoreImpl {
   todos = [];
   lists = [];
   currentWatch = null;
+  showModal = false;
 
   constructor() {
     makeAutoObservable(this, {
@@ -26,46 +27,36 @@ class TodoStoreImpl {
       setCurrentWatch: action,
       toggle: action,
       remove: action,
+      toggleModal: action,
       clearCompleted: action,
       deleteList: action,
+      currentWatchRemaining: computed,
       currentWatchName: computed,
-      remainingCount: computed,
+      specialFnResult: computed,
+      allRemainingCount: computed,
     });
   }
 
   addTask(listId, task) {
     this.todos.push({
       id: uuidv4(),
-      task,
+      task: task.trim(),
       completed: false,
       list: listId,
     });
   }
 
   addList(name) {
+    const id = uuidv4();
     this.lists.push({
-      id: uuidv4(),
-      name,
+      id: id,
+      name: name.trim(),
     });
+    this.currentWatch = id;
   }
 
   setCurrentWatch(listId) {
     this.currentWatch = listId;
-  }
-
-  get currentWatchName() {
-    const index = this.lists.findIndex((list) => list.id === this.currentWatch);
-    if (index === -1) {
-      return null;
-    }
-    return this.lists[index].name;
-  }
-
-  get currentWatchRemaining() {
-    const amount = this.todos.filter(
-      (item) => item.list === this.currentWatch && !item.completed
-    );
-    return amount.length;
   }
 
   toggle(id) {
@@ -89,7 +80,40 @@ class TodoStoreImpl {
     this.currentWatch = null;
   }
 
-  get remainingCount() {
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
+  get currentWatchName() {
+    const index = this.lists.findIndex((list) => list.id === this.currentWatch);
+    if (index === -1) {
+      return null;
+    }
+    return this.lists[index].name;
+  }
+
+  get currentWatchRemaining() {
+    const amount = this.todos.filter(
+      (item) => item.list === this.currentWatch && !item.completed
+    );
+    return amount.length;
+  }
+
+  get specialFnResult() {
+    const todolists = toJS(this.todos).filter(
+      (item) => item.list === this.currentWatch
+    );
+
+    if (todolists.every((item) => !isNaN(Number(item.task)))) {
+      const sum = todolists.reduce((sum, item) => sum + Number(item.task), 0);
+      return { message: "All item in todo is Number", result: sum };
+    } else {
+      const str = todolists.reduce((str, item) => str.concat(item.task), "");
+      return { message: "Todos contains strings", result: str };
+    }
+  }
+
+  get allRemainingCount() {
     return this.todos.filter((todo) => !todo.completed).length;
   }
 }

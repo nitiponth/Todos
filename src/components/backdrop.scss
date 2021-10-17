@@ -1,0 +1,18 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba($color: #8b8b8b, $alpha: 0.4);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  z-index: 1000;
+}

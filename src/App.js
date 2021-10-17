@@ -3,12 +3,17 @@ import { createContext } from "react";
 import "./App.scss";
 import ListsCategory from "./components/ListsCategory";
 import ListsItem from "./components/ListsItem";
+import Backdrop from "./components/backdrop";
+import Modal from "./components/Modal";
 
 export const StoreContext = createContext();
 
 function App() {
   return (
     <StoreContext.Provider value={new TodoStoreImpl()}>
+      <Backdrop>
+        <Modal />
+      </Backdrop>
       <div className="App">
         <div className="header">
           <img
