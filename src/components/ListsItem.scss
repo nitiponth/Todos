@@ -1,3 +1,36 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+  @if $breakpoint == phone-land {
+    @media only screen and (max-width: 50em) {
+      //800px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}
+
 .items {
   width: 60rem;
   max-height: 90rem;
@@ -10,6 +43,12 @@
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
 
   color: white;
+
+  overflow: hidden;
+
+  @include respond(phone-land) {
+    width: 50rem;
+  }
 
   &--hidden {
     visibility: hidden;
@@ -96,6 +135,9 @@
 
   &__lists {
     max-height: 60rem;
+    @include respond(phone-land) {
+      max-height: 40rem;
+    }
 
     -ms-overflow-style: none;
     scrollbar-width: none;

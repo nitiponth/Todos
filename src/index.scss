@@ -1,3 +1,36 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+  @if $breakpoint == phone-land {
+    @media only screen and (max-width: 50em) {
+      //800px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}
+
 *,
 *::after,
 *::before {
@@ -15,6 +48,23 @@ body {
 
 html {
   font-size: 62.5%; //1rem = 10px, 10/16 = 62.5%
+
+  @include respond(tab-land) {
+    //width < 1200 ?
+    font-size: 56.25%; //1rem = 9px, 9/16 = 56.25%
+  }
+  @include respond(tab-port) {
+    //width < 900 ?
+    font-size: 45%;
+  }
+  @include respond(phone) {
+    //width < 800 ?
+    font-size: 40%;
+  }
+  @include respond(phone) {
+    //width < 800 ?
+    font-size: 30%;
+  }
 }
 
 body {
