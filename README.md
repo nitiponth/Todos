@@ -4,7 +4,8 @@ the assignment application for an apply full-stack developer position at Rabbit 
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![RabbitX - Todos](https://user-images.githubusercontent.com/67319636/137620119-f843d97f-27c9-48cb-b108-503c0dc32278.jpeg)
+
 
 ## Demo
 
